@@ -1,0 +1,1 @@
+#Hocem se prepricati da znam commitati
