@@ -1,2 +1,2 @@
 # Bolezni_sveta
-Projektna naloga iz analize podatkov pri predmetu Uvod v programiranje na FMF UL v 2023/24
+Pred vami je projektna naloga iz analize podatkov, ki sem jo ustvaril pri predmetu *Uvod v programiranje* na *Fakulteti za matematiko in fiziko Univerze v Ljubljani* v študijskem letu 2023/24.
