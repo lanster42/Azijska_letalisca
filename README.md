@@ -3,11 +3,11 @@ Pred vami je projektna naloga iz analize podatkov, ki sem jo ustvaril pri predme
 
 ## Zajem podatkov
 Za vsako Letališče bom zajel naslednje podatke: 
-* kraj in državo, v kateri se letališče nahaja
+* ime letališča in državo, kateri letališče pripada
 * tip letališča (glavno, regionalno, majhno, zaprto ali pa pristajališče za helikopter)
 * koliko prihodov (*Arrivals*) je bilo v zadnjih 4 urah, če je ta podatek na strani podan
 
-##Hipopteze in vprašanja
+## Hipopteze in vprašanja
 *katere države imajo največ letališč
 *katere države imajo največ zaprtih letališč????
 *glavna letališča bodo imela največ prihodov v zadnjih 4 urah
