@@ -38,26 +38,61 @@ def je_v_24urah(datum_str, cas_str, primerjalni_datum_str, moznost=""):
     razlika = datum2 - datum1
     
     # Preverim, ali je datum1 pred datum2 in ali je razlika manjša od 24 ur
-    
     if moznost == "strogo":
         return razlika >= timedelta(hours=0) and razlika <= timedelta(days=1)
     else: return razlika <= timedelta(days=1)
+
+def zamuda(prvi_cas, drugi_cas): # Za pomoc pri izracunu zamude bom uporabil min cas razliko, ker zamuda ne bo nikoli vec od 12 ur
+    # Pretvorim oba časa v datetime objekte (brez datuma)
+    cas1 = datetime.strptime(prvi_cas, "%H:%M")
+    cas2 = datetime.strptime(drugi_cas, "%H:%M")
+
+    # Razlika, ko je cas1 pred cas2 (isti dan)
+    razlika1 = cas2 - cas1
+    # Razlika, ko je cas2 naslednji dan (čez polnoč)
+    cas2_naslednji_dan = cas2 + timedelta(days=1)
+    razlika2 = cas2_naslednji_dan - cas1
     
+    cas1_naslednji_dan = cas1 + timedelta(days=1)
+    razlika3 = cas1_naslednji_dan - cas2
+    
+    razlika = min(abs(razlika1), razlika2, razlika3)
+    minute = razlika.seconds // 60   
+    if razlika == razlika1 and razlika1< timedelta(hours=0) or razlika == razlika3:
+        return (- minute)
+    else:
+        return minute
 
 # Primer:
-widget_url_ = "https://www.avionio.com/widget/en/SIN/arrivals"
-local_date_time_ = "2024-10-13 12:49"
+#seznam_tuplov = [("22:00", "22:10"), ("00:10", "23:50"), ("23:40", "00:10")]
+    
+def povprecna_zamuda(seznam_tuplov):
+    sestevek = 0
+    brezcasni = 0
+    for dvojica in seznam_tuplov:
+        try:
+            sestevek += zamuda(dvojica[0], dvojica[-1])
+        except:
+            brezcasni += 1
+    return f"{sestevek // (len(seznam_tuplov) - brezcasni)} minut"
+        
+# Primer:
+widget_url_ = "https://www.avionio.com/widget/en/HKG/arrivals"
+#local_date_time = "2024-10-13 12:49"
 
 def pridobi_lete_v_24urah(widget_url_):
-    previous_url = f"{widget_url_}?page=-0"
+    previous_url = f"{widget_url_}?page=-0"  # Zacetek, da potem lahko page num spreminjam
     trenutna_stran = 0
     stevilo_letov = 0
+    mesta = []
+    druzbe = []
+    seznam_parov_zamud = []
     
     while True:
-        fourth_doc = parsiraj(previous_url) #Na vsaki "strani" lociramo tabelo
-        local_date_time = fourth_doc.find(id="tt-local-time")["data-date"][:16]
-        tabela = fourth_doc.find("tbody")
+        third_doc = parsiraj(previous_url) #Na vsaki "strani" lociramo tabelo
+        tabela = third_doc.find("tbody")
         if tabela:
+            local_date_time = third_doc.find(id="tt-local-time")["data-date"][:16]
             prvi_let_datum = tabela.find_all("tr")[1].find(class_="tt-d").string.strip()
             prvi_let_cas = tabela.find_all("tr")[1].find(class_="tt-t").string.strip()
             
@@ -70,7 +105,7 @@ def pridobi_lete_v_24urah(widget_url_):
                 datum_leta = let.find_all("td")[1].string.strip()
                 if je_v_24urah(datum_leta, cas_leta, local_date_time, "strogo"):
                     zacetno_mesto = let.find_all("td")[3].string
-                    pristanek = let.find_all("td")[-1].string
+                    pristanek = let.find_all("td")[-1].string[-5:]
                      
                     # Pridobivanje letalske druzbe (izognim se podznacki a)
                     try:
@@ -79,21 +114,27 @@ def pridobi_lete_v_24urah(widget_url_):
                         letalska_druzba = let.find_all("td")[5].get_text(strip=True)
                     except:
                         letalska_druzba = let.find_all("td")[5].string
-                    print(cas_leta, zacetno_mesto, letalska_druzba, pristanek)
-
-                # Ali je prvi let manj kot 24 ur stran
+                    stevilo_letov += 1
+                    seznam_parov_zamud.append((cas_leta, pristanek))
+                    if zacetno_mesto not in mesta:
+                        mesta.append(zacetno_mesto)
+                    if letalska_druzba not in druzbe:
+                        druzbe.append(letalska_druzba)
+                    #print(cas_leta, zacetno_mesto, letalska_druzba, pristanek)
+            # Ali je prvi let manj kot 24 ur stran
             if je_v_24urah(prvi_let_datum, prvi_let_cas, local_date_time):
-                print(previous_url)
-                print(prvi_let_cas)
+                pass
             else:
-                break  # Če prvi let ni več znotraj 24 ur, prekini zanko
+                break # Če prvi let ni več znotraj 24 ur, prekini zanko
 
             trenutna_stran += 1
             previous_url = f"{previous_url[:-len(str(trenutna_stran-1))]}{trenutna_stran}"
-    
-    print("Konec iskanja letov znotraj 24 ur.")
+    #print(stevilo_letov, mesta, druzbe, povprecna_zamuda(seznam_parov_zamud))
+    #print("Konec iskanja letov zadnjih 24 ur.")
+    return {"Število letov": stevilo_letov, "Destinacije": mesta, 
+            "Letalske družbe": druzbe, "Povprečna zamuda letov": povprecna_zamuda(seznam_parov_zamud)}
 
-def pridobivanje_podatkov():
+def pridobivanje_podatkov(frontpage_url):
     Seznam_slovarjev = []
     for page in range(stevilo_strani(frontpage_url) + 1):
         # Najprej pridobim permition za vsako stran posebaj (po straneh se lahko premikas le po 50 naenkrat)
@@ -107,7 +148,6 @@ def pridobivanje_podatkov():
             ime_letalisca = letalisce.find("h3").find("a").string
             drzava = letalisce.find("p").find("b").string.strip()
             tip_letalisca = letalisce.find("img")["title"]
-            koda_letalisca = letalisce.find("h3").find("a")["href"].split('/')[2]
             
             # Lotimo se strani z odhodi in prihodi :')
             poisci_prihode = letalisce.find(title="Arrivals and departures")
@@ -115,59 +155,24 @@ def pridobivanje_podatkov():
             if poisci_prihode:
                 url_prihodov = f"https://ourairports.com{poisci_prihode.get("href")}"  # Če obstaja, vzamem 'href'
                 sec_doc = parsiraj(url_prihodov)
-                print(url_prihodov)
                 
-                widget_url = sec_doc.find("iframe")["src"] # Kdo mi je zabičou da morm delat z widgeti?!
-                third_doc = parsiraj(widget_url)
+                widget_url = sec_doc.find("iframe")["src"] # Kdo mi je zabičou da morm delat z widgeti?! Parsiram widget
                 print(widget_url)
-                
-                # Vsak prihod posebaj pogledamo
-                tabela = third_doc.find("tbody")
-                if tabela:
-                    try:
-                        local_date_time = third_doc.find(id="tt-local-time")["data-date"][:16]                       
-                        print(local_date_time)
-                        
-                        previous_url = f"{widget_url}?ts=1728763200000&page=-0"
-                        fourth_doc = parsiraj(previous_url)
-                        tabela2 = fourth_doc.find("tbody")
-                        
-                        # Preverim, ce je prvi let na tej strani manj kot 24 ur stran od zdaj
-                        prvi_let_datum = tabela2.find_all("tr")[1].find(class_="tt-d").string.strip()
-                        prvi_let_cas = tabela2.find_all("tr")[1].find(class_="tt-t").string.strip()
-                        
-                        # Dokler prvi let ni vec kot 24 ur oddaljen, bomo parsirali po previous straneh
-                        trenutna_stran = 0
-                        while je_v_24urah(prvi_let_datum, prvi_let_cas, local_date_time):
-                            
-                            trenutna_stran += 1
-                            previous_url = f"{previous_url[:-len(str(trenutna_stran-1))]}{trenutna_stran}"
-                            potrdilo4 = requests.get(previous_url, verify=False)
-                            if potrdilo4.status_code == 200:
-                            # Parsiram HTML vsebino nove strani
-                                fourth_doc = BeautifulSoup(potrdilo4.content, "html.parser")
-                            print(previous_url)
-                            print(prvi_let_cas)
-                        else:
-                            for prihod in tabela:
-                                datum_prihoda = prihod.find_all(class_="tt-d").string
-                                #print(datum_prihoda)
-                    except AttributeError:
-                        print("stran ti sekr ne dela luzr")
-                else: 
-                    print("Na strani ni podatka o prihodih")
-                #print(prihod)
+                # V posebni funkciji sestavim slovar prihodov
+                if widget_url:
+                    prihodi = pridobi_lete_v_24urah(widget_url)
+                else:
+                    prihodi = "Ni podatka"
             else:
                 print("Element 'Arrivals and departures' ne obstaja")
+                prihodi = "Ni podatka"
 
-            Sez_letalisc.append({"ime letališča" : ime_letalisca, "država": drzava, "tip letališča" : tip_letalisca, "koda letališča": koda_letalisca})
-            #Slovar_letalisc[ime_letalisca] = [drzava, tip_letalisca]
+            Sez_letalisc.append({"ime letališča" : ime_letalisca, "država": drzava, 
+                                 "tip letališča" : tip_letalisca, "prihodi": prihodi})
         Seznam_slovarjev += (Sez_letalisc)
     return Seznam_slovarjev
 
 #TO DO:
 
-#  sestavi funkcijo, ki pogleda uro in vrne stevilo prihodov zadnjih 24 ur(pazi na previous) sidenote: uposteval sem tudi unknown, scheduled in estimated
-#  zapisuj si tudi v koliko razlicnih mest letijo in letalsko druzbo. Lahko vzames tut delay (ce si zelo ambiciozen)
-
-#  Na koncu: "Slovenjenje"
+# Debuggej tazadno funkcijo, zdi se mi, da so ostale okey. 
+# Na koncu: "Slovenjenje"
