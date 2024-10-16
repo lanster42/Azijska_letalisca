@@ -3,7 +3,6 @@
 from bs4 import BeautifulSoup
 import requests
 import time
-import re
 
 #####################################################################################
 import urllib3
@@ -79,7 +78,7 @@ def povprecna_zamuda(seznam_tuplov):
     return f"{sestevek // (len(seznam_tuplov) - brezcasni)} minut"
         
 # Primer:
-widget_url_ = "https://www.avionio.com/widget/en/USM/arrivals"
+#widget_url_ = "https://www.avionio.com/widget/en/USM/arrivals"
 #local_date_time = "2024-10-13 12:49"
 
 def pridobi_lete_v_24urah(widget_url_):
@@ -91,11 +90,11 @@ def pridobi_lete_v_24urah(widget_url_):
     seznam_parov_zamud = []
     
     while True:
-        print(f"Pošiljam zahtevek za stran: {previous_url}")
+        #print(f"Pošiljam zahtevek za stran: {previous_url}")
         third_doc = parsiraj(previous_url) #Na vsaki "strani" lociramo tabelo
         tabela = third_doc.find("tbody")
         if tabela:
-            print(f"Obdelujem stran {trenutna_stran} za URL {previous_url}")
+            #print(f"Obdelujem stran {trenutna_stran} za URL {previous_url}")
             local_date_time = third_doc.find(id="tt-local-time")["data-date"][:16]
             prvi_let_datum = tabela.find_all("tr")[1].find(class_="tt-d").string.strip()
             prvi_let_cas = tabela.find_all("tr")[1].find(class_="tt-t").string.strip()
@@ -178,15 +177,20 @@ def pridobivanje_podatkov(frontpage_url):
                     #print(prihodi)
                 except AttributeError:
                     print("Prihod ni najden.")
-                    prihodi = "Ni podatka"
+                    prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", 
+            "Letalske družbe": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
                     continue
             else:
                 print("Element 'Arrivals and departures' ne obstaja")
-                prihodi = "Ni podatka"
+                prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", 
+            "Letalske družbe": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
 
-            Sez_letalisc.append({"ime letališča" : ime_letalisca, "država": drzava, 
-                                 "tip letališča" : tip_letalisca, "prihodi": prihodi})
+            Slovar1 = {"ime letališča" : ime_letalisca, "država": drzava, 
+                                 "tip letališča" : tip_letalisca}
+            Sez_letalisc.append({**Slovar1, **prihodi})
+            print(Sez_letalisc)
         Seznam_slovarjev += (Sez_letalisc)
+        #print(Seznam_slovarjev)
     return Seznam_slovarjev
 
 #TO DO:
