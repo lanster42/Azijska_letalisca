@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Airports in Asia @ OurAirports
+    </title>
+        <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title> @ OurAirports</title>
+    <link rel="stylesheet" href="/js/lib/leaflet/leaflet.css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/local.css" rel="stylesheet"/>
+    <link rel="shortcut icon" sizes="196x196" href="/images/logo-196px.png" />
+    <link rel="shortcut icon" sizes="128x128" href="/images/logo-128px.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="/images/logo-128px.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/images/logo-128px.png" />
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+  </head>
+  <body class="container-fluid row">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+  <button type="button"
+          class="navbar-toggle collapsed"
+          data-toggle="collapse"
+          data-target="#navbar-collapse"
+          aria-expanded="false">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="navbar-brand " href="/" title="OurAirports home">
+    <span>
+      <img src="/images/logo-196px.png" alt="OurAirports home"/>
+      <span class="site-name visible-lg-inline">
+        OurAirports
+              </span>
+    </span>
+  </a>
+    <form class="navbar-form visible-xs small-search" role="search" action="/search">
+    <div class="input-group">
+      <input type="text" class="form-control" name="q"
+             placeholder="Search for an airport" />
+      <div class="input-group-btn">
+        <button type="submit" class="btn btn-default" aria-label="Search">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </div>
+    </div>
+  </form>
+  </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="">
+          <a href="/continents/AS/" class="navbar-link">
+            <span class="glyphicon glyphicon-globe"></span>
+            <i class="hidden-md hidden-sm">Asia</i>
+            <i class="visible-md-inline visible-sm-inline"
+               title="Asia">AS</i>
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-download"></span>
+            <span>Data</span>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li title="Spreadsheet of airports in Asia">
+              <a href="/continents/AS/airports.csv">
+                <span class="glyphicon glyphicon-download"></span>
+                airports.csv
+              </a>
+            </li>
+            <li title="HXL hashtagged list of airports in Asia">
+              <a href="/continents/AS/airports.hxl">
+                <span class="glyphicon glyphicon-download"></span>
+                airports.hxl
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li title="Subscribe to comments about airports in Asia">
+              <a href="/continents/AS/comments.rss">
+                <img height="12" src="/images/icons/rss.gif" alt="RSS icon"/>
+                comments.rss
+              </a>
+            </li>
+          </ul>
+        </li>
+              </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+  
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <span class="glyphicon glyphicon-cog"></span>
+      <span class="">
+                Login
+              </span>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+
+      
+      <li class="">
+        <a href="/login?from=/continents/AS/airports.html?start=7200">
+          <span class="glyphicon glyphicon-log-in"></span>
+          Login
+        </a>
+      </li>
+
+      <li class="">
+        <a href="/signup.html?from=/continents/AS/airports.html?start=7200">
+          <span class="glyphicon glyphicon-user"></span>
+          Sign up
+        </a>
+      </li>
+
+          </ul>
+  </li>
+
+  <li class="">
+    <a href="/help/">
+      <span class="glyphicon glyphicon-question-sign"></span>
+      <span class="hidden-sm hidden-md">Help</span>
+    </a>
+  </li>
+
+    <li class="hidden-xs large-search">
+    <form class="navbar-form" role="search" action="/search">
+      <div class="input-group">
+        <input type="search" class="form-control" name="q"
+               value="" placeholder="Airport, country, hashtag, etc." />
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-default" aria-label="Search">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </li>
+  
+</ul>
+    </div>
+  </div>
+</nav>
+
+    <header class="col-sm-12">
+      <nav aria-label="breadcrumb">
+  <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+      <a href="/world.html">World</a>
+    </li>
+                    <li class="breadcrumb-item"><a href="/continents/AS/">Asia</a></li>
+          </ul>
+</nav>
+      <h1>
+                        <img style="height: 3ex" src="/images/continents/AS.jpg"/>
+                Airports in Asia
+      </h1>
+      <ul class="nav nav-tabs">
+        <li>
+          <a href="/continents/AS/">Map</a>
+        </li>
+        <li class="active">
+          <a href="/continents/AS/airports.html">
+            Airports
+            <span class="badge hidden-sm">11,670</span>
+          </a>
+        </li>
+      </ul>
+    </header>
+    <main class="col-sm-9">
+            <h2>
+        Airports
+                7,201 to 7,250 of 11,670
+                        (by popularity)
+              </h2>
+      <form target="" method="get" class="airport-filter">
+    <input name="start" value="7200" type="hidden"/>
+        <label class="checkbox-inline">
+            <input type="checkbox" name="sort" value="name" onChange="this.form.submit()"/>
+            Sort A&ndash;Z
+    </label>
+      <label class="checkbox-inline">
+            <input type="checkbox" name="show" value="scheduled" onChange="this.form.submit()"/>
+            Airline destinations only
+    </label>
+  <button class="hidden" type="submit">Change</button>
+</form>
+      <nav class="nav col-sm-12">
+  <ul class="pager small">
+    <li class="previous">
+            <a href="/continents/AS/airports.html?start=7150">&larr; Previous</a>
+          </li>
+    <li class="next">
+            <a href="/continents/AS/airports.html?start=7250">Next &rarr;</a>
+          </li>
+  </ul>
+</nav>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/IN-0143/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/IN-0143/">MARG Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/IN/"><img class="flag" src="/images/flags/IN.png" height="12" /></a> 
+                        <span class="text-nowrap">Karaikal,</span>
+                                <span class="text-nowrap">
+          Pondicherry,        </span>
+                        <b class="text-nowrap">
+          India
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/IN-0143/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/CY-0050/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/CY-0050/">Gülseren Barracks Lakeside Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/CY/"><img class="flag" src="/images/flags/CY.png" height="12" /></a> 
+                        <span class="text-nowrap">Karakol,</span>
+                                <span class="text-nowrap">
+          Famagusta District,        </span>
+                        <b class="text-nowrap">
+          Cyprus
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/CY-0050/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/KZ-0120/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/KZ-0120/">Karakum Private Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/KZ/"><img class="flag" src="/images/flags/KZ.png" height="12" /></a> 
+                        <span class="text-nowrap">Karakum,</span>
+                                <span class="text-nowrap">
+          Abai Region,        </span>
+                        <b class="text-nowrap">
+          Kazakhstan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/KZ-0120/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/CY-0029/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/CY-0029/">Karaman Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/CY/"><img class="flag" src="/images/flags/CY.png" height="12" /></a> 
+                        <span class="text-nowrap">Karaman / Karmi,</span>
+                                <span class="text-nowrap">
+          Kyrenia District,        </span>
+                        <b class="text-nowrap">
+          Cyprus
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/CY-0029/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/KZ-0105/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/KZ-0105/">Karashoky Airport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/KZ/"><img class="flag" src="/images/flags/KZ.png" height="12" /></a> 
+                        <span class="text-nowrap">Karashoky,</span>
+                                <span class="text-nowrap">
+          Jetisu Region,        </span>
+                        <b class="text-nowrap">
+          Kazakhstan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/KZ-0105/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2367/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2367/">Yobuko Sports Center Emergency Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Karatsu,</span>
+                                <span class="text-nowrap">
+          Saga Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2367/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1329/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1329/">Japan Red Cross Karatsu Hospital Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Karatsu,</span>
+                                <span class="text-nowrap">
+          Saga Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1329/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1374/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1374/">Matsuura River Auxiliary Airfield</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Karatsu,</span>
+                                <span class="text-nowrap">
+          Saga Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1374/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/CY-0022/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/CY-0022/">UNFICYP Camp Roca Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/CY/"><img class="flag" src="/images/flags/CY.png" height="12" /></a> 
+                        <span class="text-nowrap">Karavostasi / Gemikonağı,</span>
+                                <span class="text-nowrap">
+          Nicosia District,        </span>
+                        <b class="text-nowrap">
+          Cyprus
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/CY-0022/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/IN-0303/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/IN-0303/">Kargil Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/IN/"><img class="flag" src="/images/flags/IN.png" height="12" /></a> 
+                        <span class="text-nowrap">Kargil,</span>
+                                <span class="text-nowrap">
+          Ladakh,        </span>
+                        <b class="text-nowrap">
+          India
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/IN-0303/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/IN-0201/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/IN-0201/">Karimnagar Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/IN/"><img class="flag" src="/images/flags/IN.png" height="12" /></a> 
+                        <span class="text-nowrap">Karimnagar,</span>
+                                <span class="text-nowrap">
+          Telangana,        </span>
+                        <b class="text-nowrap">
+          India
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/IN-0201/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/IN-0319/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/IN-0319/">Karu Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/IN/"><img class="flag" src="/images/flags/IN.png" height="12" /></a> 
+                        <span class="text-nowrap">Karu,</span>
+                                <span class="text-nowrap">
+          Ladakh,        </span>
+                        <b class="text-nowrap">
+          India
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/IN-0319/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2658/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2658/">Karuizawa Fire Department Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Karuizawa,</span>
+                                <span class="text-nowrap">
+          Nagano Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2658/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2660/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2660/">Seibu Karuizawa Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Karuizawa,</span>
+                                <span class="text-nowrap">
+          Nagano Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2660/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-0633/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-0633/">Uzurano Airfield</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasai,</span>
+                                <span class="text-nowrap">
+          Hyōgo Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-0633/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-0864/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-0864/">Tsukuba Naval Air Base / Tomobe Airfield</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasama,</span>
+                                <span class="text-nowrap">
+          Ibaraki Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-0864/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1193/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1193/">Tsukuba Naval Airfield</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasama,</span>
+                                <span class="text-nowrap">
+          Ibaraki Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1193/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2287/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2287/">Ibaraki Prefectural Central Hospital Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasama,</span>
+                                <span class="text-nowrap">
+          Ibaraki Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2287/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2007/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2007/">Matsunami General Hospital Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasamatsu,</span>
+                                <span class="text-nowrap">
+          Gifu Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2007/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-3107/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-3107/">Hishima Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasaoka,</span>
+                                <span class="text-nowrap">
+          Okayama Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-3107/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-0385/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-0385/">Kitagishima Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasaoka,</span>
+                                <span class="text-nowrap">
+          Okayama Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-0385/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1320/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1320/">Nara Medical University Hospital Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kashihara,</span>
+                                <span class="text-nowrap">
+          Nara Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1320/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2365/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2365/">Kashihara Sports Park Emergency Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kashihara,</span>
+                                <span class="text-nowrap">
+          Nara Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2365/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1908/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1908/">JGSDF Kashiwa Training Field Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kashiwa,</span>
+                                <span class="text-nowrap">
+          Chiba Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1908/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1951/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1951/">Kashiwa Airfield</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kashiwa,</span>
+                                <span class="text-nowrap">
+          Chiba Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1951/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1952/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1952/">Fuse Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kashiwa,</span>
+                                <span class="text-nowrap">
+          Chiba Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1952/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-0451/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-0451/">Bentenshita Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kashiwa,</span>
+                                <span class="text-nowrap">
+          Chiba Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-0451/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-0509/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-0509/">Yamatogawa Water Park Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kashiwara,</span>
+                                <span class="text-nowrap">
+          Ōsaka Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-0509/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/PH-0487/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/PH-0487/">Didipio Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/PH/"><img class="flag" src="/images/flags/PH.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasibu,</span>
+                                <span class="text-nowrap">
+          Nueva Vizcaya Province,        </span>
+                        <b class="text-nowrap">
+          Philippines
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/PH-0487/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/TR-0253/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/TR-0253/">Yayuz Sel Border Post Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/TR/"><img class="flag" src="/images/flags/TR.png" height="12" /></a> 
+                        <span class="text-nowrap">Kaşım,</span>
+                                <span class="text-nowrap">
+          Van Province,        </span>
+                        <b class="text-nowrap">
+          Turkey
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/TR-0253/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/TR-0255/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/TR-0255/">Kaşım Border Post Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/TR/"><img class="flag" src="/images/flags/TR.png" height="12" /></a> 
+                        <span class="text-nowrap">Kaşım,</span>
+                                <span class="text-nowrap">
+          Van Province,        </span>
+                        <b class="text-nowrap">
+          Turkey
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/TR-0255/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/RU-0088/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/RU-0088/">Urup Airport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/RU/"><img class="flag" src="/images/flags/RU.png" height="12" /></a> 
+                        <span class="text-nowrap">Kastrikum,</span>
+                                <span class="text-nowrap">
+          Sakhalin Oblast,        </span>
+                        <b class="text-nowrap">
+          Russia
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/RU-0088/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                <a class="label label-default"
+           href="/airports/RU-0088/comments.html"
+           title="Comments">
+          <span class="glyphicon glyphicon-comment"></span>
+          <span class="hidden-xs">Comments</span>
+          2
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1233/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1233/">Fukuoka Tokushukai Hospital Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasuga,</span>
+                                <span class="text-nowrap">
+          Fukuoka Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1233/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2464/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2464/">Kasugai Municipal Hospital West Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasugai,</span>
+                                <span class="text-nowrap">
+          Aichi Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2464/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2465/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2465/">Kasugai Municipal Hospital East Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasugai,</span>
+                                <span class="text-nowrap">
+          Aichi Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2465/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2466/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2466/">Kasugai Interchange Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kasugai,</span>
+                                <span class="text-nowrap">
+          Aichi Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2466/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-0441/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-0441/">Katashina Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Katashina,</span>
+                                <span class="text-nowrap">
+          Gunma Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-0441/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-0442/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-0442/">Marunuma Kogen Ski Resort Emergency Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Katashina,</span>
+                                <span class="text-nowrap">
+          Gunma Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-0442/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-2403/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-2403/">Yashiro Airfield</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kato,</span>
+                                <span class="text-nowrap">
+          Hyōgo Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-2403/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-3295/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-3295/">Kato Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kato,</span>
+                                <span class="text-nowrap">
+          Hyōgo Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-3295/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/CY-0076/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/CY-0076/">Limassol General Hospital Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/CY/"><img class="flag" src="/images/flags/CY.png" height="12" /></a> 
+                        <span class="text-nowrap">Kato Polemidia,</span>
+                                <span class="text-nowrap">
+          Limassol District,        </span>
+                        <b class="text-nowrap">
+          Cyprus
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/CY-0076/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-0450/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-0450/">Sawara Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Katori,</span>
+                                <span class="text-nowrap">
+          Chiba Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-0450/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-3109/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-3109/">Shinjo Medevac Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Katsuragi,</span>
+                                <span class="text-nowrap">
+          Nagano Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-3109/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1406/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1406/">Tokyo Detention House Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Katsushika, Tokyo,</span>
+                                <span class="text-nowrap">
+          Tōkyō Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1406/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-0771/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-0771/">NHO Katsuura Hospital Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Katsuura,</span>
+                                <span class="text-nowrap">
+          Tokushima Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-0771/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-3102/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-3102/">Katsuura Sky Harbor</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Katsuura,</span>
+                                <span class="text-nowrap">
+          Chiba Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-3102/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/RU-0735/" class="icon text-center">
+                <img src="/images/maps/closed-airport-marker.png" alt="closed airport marker" title="Closed airport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/RU-0735/">Karymay Airport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/RU/"><img class="flag" src="/images/flags/RU.png" height="12" /></a> 
+                        <span class="text-nowrap">Kavalerskoye,</span>
+                                <span class="text-nowrap">
+          Kamchatka Krai,        </span>
+                        <b class="text-nowrap">
+          Russia
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/RU-0735/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1593/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1593/">Kawaba Denen Plaza Helipad</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kawaba,</span>
+                                <span class="text-nowrap">
+          Gunma Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1593/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/IN-0220/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/IN-0220/">Kawade Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/IN/"><img class="flag" src="/images/flags/IN.png" height="12" /></a> 
+                        <span class="text-nowrap">Kawade,</span>
+                                <span class="text-nowrap">
+          Maharashtra,        </span>
+                        <b class="text-nowrap">
+          India
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/IN-0220/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1537/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1537/">Asahi Kawagoe Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kawagoe,</span>
+                                <span class="text-nowrap">
+          Saitama Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1537/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <div class="col-lg-6">
+  <section class="airport listing row">
+    <figure class="col-xs-2 col-sm-1 text-center">
+      <a href="/airports/JP-1582/" class="icon text-center">
+                <img src="/images/maps/heliport-marker.png" alt="heliport marker" title="Heliport" />
+              </a>
+    </figure>
+    <div class="col-xs-10 col-sm-11">
+      <h3>
+        <a href="/airports/JP-1582/">Saitama Medical Center Heliport</a>
+      </h3>
+      <p class="text-muted">
+                <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" /></a> 
+                        <span class="text-nowrap">Kawagoe,</span>
+                                <span class="text-nowrap">
+          Saitama Prefecture,        </span>
+                        <b class="text-nowrap">
+          Japan
+        </b>
+                              </p>
+      <p>
+                <a class="label label-primary"
+           href="/airports/JP-1582/weather.html"
+           title="Airport weather">
+          <span class="glyphicon glyphicon-cloud"></span>
+          <span class="hidden-xs">Weather</span>
+        </a>
+                      </p>
+    </div>
+  </section>
+</div>
+            <nav class="nav col-sm-12">
+  <ul class="pager small">
+    <li class="previous">
+            <a href="/continents/AS/airports.html?start=7150">&larr; Previous</a>
+          </li>
+    <li class="next">
+            <a href="/continents/AS/airports.html?start=7250">Next &rarr;</a>
+          </li>
+  </ul>
+</nav>
+          </main>
+    <aside class="col-sm-3">
+    <h2>
+    Airports by country or territory
+  </h2>
+      <div class="geo listing">
+    <a class="hidden-xs" href="/countries/AF/"><img class="flag" src="/images/flags/AF.png" height="12" title="Afghanistan" alt="" /></a> 
+    <a href="/countries/AF/">Afghanistan</a>
+    (82 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/AM/"><img class="flag" src="/images/flags/AM.png" height="12" title="Armenia" alt="" /></a> 
+    <a href="/countries/AM/">Armenia</a>
+    (16 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/AZ/"><img class="flag" src="/images/flags/AZ.png" height="12" title="Azerbaijan" alt="" /></a> 
+    <a href="/countries/AZ/">Azerbaijan</a>
+    (41 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/BH/"><img class="flag" src="/images/flags/BH.png" height="12" title="Bahrain" alt="" /></a> 
+    <a href="/countries/BH/">Bahrain</a>
+    (12 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/BD/"><img class="flag" src="/images/flags/BD.png" height="12" title="Bangladesh" alt="" /></a> 
+    <a href="/countries/BD/">Bangladesh</a>
+    (58 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/BT/"><img class="flag" src="/images/flags/BT.png" height="12" title="Bhutan" alt="" /></a> 
+    <a href="/countries/BT/">Bhutan</a>
+    (12 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/IO/"><img class="flag" src="/images/flags/IO.png" height="12" title="British Indian Ocean Territory" alt="" /></a> 
+    <a href="/countries/IO/">British Indian Ocean Territory</a>
+    (1 airport)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/BN/"><img class="flag" src="/images/flags/BN.png" height="12" title="Brunei" alt="" /></a> 
+    <a href="/countries/BN/">Brunei</a>
+    (16 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/KH/"><img class="flag" src="/images/flags/KH.png" height="12" title="Cambodia" alt="" /></a> 
+    <a href="/countries/KH/">Cambodia</a>
+    (18 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/CN/"><img class="flag" src="/images/flags/CN.png" height="12" title="China" alt="" /></a> 
+    <a href="/countries/CN/">China</a>
+    (715 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/CX/"><img class="flag" src="/images/flags/CX.png" height="12" title="Christmas Island" alt="" /></a> 
+    <a href="/countries/CX/">Christmas Island</a>
+    (1 airport)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/CC/"><img class="flag" src="/images/flags/CC.png" height="12" title="Cocos (Keeling) Islands" alt="" /></a> 
+    <a href="/countries/CC/">Cocos (Keeling) Islands</a>
+    (1 airport)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/CY/"><img class="flag" src="/images/flags/CY.png" height="12" title="Cyprus" alt="" /></a> 
+    <a href="/countries/CY/">Cyprus</a>
+    (91 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/EG/"><img class="flag" src="/images/flags/EG.png" height="12" title="Egypt" alt="" /></a> 
+    <a href="/countries/EG/">Egypt</a>
+    (25 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/GE/"><img class="flag" src="/images/flags/GE.png" height="12" title="Georgia" alt="" /></a> 
+    <a href="/countries/GE/">Georgia</a>
+    (34 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/GR/"><img class="flag" src="/images/flags/GR.png" height="12" title="Greece" alt="" /></a> 
+    <a href="/countries/GR/">Greece</a>
+    (5 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/HK/"><img class="flag" src="/images/flags/HK.png" height="12" title="Hong Kong" alt="" /></a> 
+    <a href="/countries/HK/">Hong Kong</a>
+    (103 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/IN/"><img class="flag" src="/images/flags/IN.png" height="12" title="India" alt="" /></a> 
+    <a href="/countries/IN/">India</a>
+    (626 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/ID/"><img class="flag" src="/images/flags/ID.png" height="12" title="Indonesia" alt="" /></a> 
+    <a href="/countries/ID/">Indonesia</a>
+    (618 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/IR/"><img class="flag" src="/images/flags/IR.png" height="12" title="Iran" alt="" /></a> 
+    <a href="/countries/IR/">Iran</a>
+    (288 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/IQ/"><img class="flag" src="/images/flags/IQ.png" height="12" title="Iraq" alt="" /></a> 
+    <a href="/countries/IQ/">Iraq</a>
+    (89 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/IL/"><img class="flag" src="/images/flags/IL.png" height="12" title="Israel" alt="" /></a> 
+    <a href="/countries/IL/">Israel</a>
+    (57 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/JP/"><img class="flag" src="/images/flags/JP.png" height="12" title="Japan" alt="" /></a> 
+    <a href="/countries/JP/">Japan</a>
+    (3,565 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/JO/"><img class="flag" src="/images/flags/JO.png" height="12" title="Jordan" alt="" /></a> 
+    <a href="/countries/JO/">Jordan</a>
+    (24 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/KZ/"><img class="flag" src="/images/flags/KZ.png" height="12" title="Kazakhstan" alt="" /></a> 
+    <a href="/countries/KZ/">Kazakhstan</a>
+    (181 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/KW/"><img class="flag" src="/images/flags/KW.png" height="12" title="Kuwait" alt="" /></a> 
+    <a href="/countries/KW/">Kuwait</a>
+    (26 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/KG/"><img class="flag" src="/images/flags/KG.png" height="12" title="Kyrgyzstan" alt="" /></a> 
+    <a href="/countries/KG/">Kyrgyzstan</a>
+    (56 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/LA/"><img class="flag" src="/images/flags/LA.png" height="12" title="Laos" alt="" /></a> 
+    <a href="/countries/LA/">Laos</a>
+    (25 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/LB/"><img class="flag" src="/images/flags/LB.png" height="12" title="Lebanon" alt="" /></a> 
+    <a href="/countries/LB/">Lebanon</a>
+    (38 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/MO/"><img class="flag" src="/images/flags/MO.png" height="12" title="Macau" alt="" /></a> 
+    <a href="/countries/MO/">Macau</a>
+    (5 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/MY/"><img class="flag" src="/images/flags/MY.png" height="12" title="Malaysia" alt="" /></a> 
+    <a href="/countries/MY/">Malaysia</a>
+    (136 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/MV/"><img class="flag" src="/images/flags/MV.png" height="12" title="Maldives" alt="" /></a> 
+    <a href="/countries/MV/">Maldives</a>
+    (30 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/MN/"><img class="flag" src="/images/flags/MN.png" height="12" title="Mongolia" alt="" /></a> 
+    <a href="/countries/MN/">Mongolia</a>
+    (40 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/MM/"><img class="flag" src="/images/flags/MM.png" height="12" title="Myanmar" alt="" /></a> 
+    <a href="/countries/MM/">Myanmar</a>
+    (82 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/NP/"><img class="flag" src="/images/flags/NP.png" height="12" title="Nepal" alt="" /></a> 
+    <a href="/countries/NP/">Nepal</a>
+    (65 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/KP/"><img class="flag" src="/images/flags/KP.png" height="12" title="North Korea" alt="" /></a> 
+    <a href="/countries/KP/">North Korea</a>
+    (94 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/OM/"><img class="flag" src="/images/flags/OM.png" height="12" title="Oman" alt="" /></a> 
+    <a href="/countries/OM/">Oman</a>
+    (60 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/PK/"><img class="flag" src="/images/flags/PK.png" height="12" title="Pakistan" alt="" /></a> 
+    <a href="/countries/PK/">Pakistan</a>
+    (189 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/PS/"><img class="flag" src="/images/flags/PS.png" height="12" title="Palestinian Territory" alt="" /></a> 
+    <a href="/countries/PS/">Palestinian Territory</a>
+    (7 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/PH/"><img class="flag" src="/images/flags/PH.png" height="12" title="Philippines" alt="" /></a> 
+    <a href="/countries/PH/">Philippines</a>
+    (728 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/QA/"><img class="flag" src="/images/flags/QA.png" height="12" title="Qatar" alt="" /></a> 
+    <a href="/countries/QA/">Qatar</a>
+    (21 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/RU/"><img class="flag" src="/images/flags/RU.png" height="12" title="Russia" alt="" /></a> 
+    <a href="/countries/RU/">Russia</a>
+    (487 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/SA/"><img class="flag" src="/images/flags/SA.png" height="12" title="Saudi Arabia" alt="" /></a> 
+    <a href="/countries/SA/">Saudi Arabia</a>
+    (164 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/SG/"><img class="flag" src="/images/flags/SG.png" height="12" title="Singapore" alt="" /></a> 
+    <a href="/countries/SG/">Singapore</a>
+    (11 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/KR/"><img class="flag" src="/images/flags/KR.png" height="12" title="South Korea" alt="" /></a> 
+    <a href="/countries/KR/">South Korea</a>
+    (1,402 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/LK/"><img class="flag" src="/images/flags/LK.png" height="12" title="Sri Lanka" alt="" /></a> 
+    <a href="/countries/LK/">Sri Lanka</a>
+    (38 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/SY/"><img class="flag" src="/images/flags/SY.png" height="12" title="Syria" alt="" /></a> 
+    <a href="/countries/SY/">Syria</a>
+    (55 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/TW/"><img class="flag" src="/images/flags/TW.png" height="12" title="Taiwan" alt="" /></a> 
+    <a href="/countries/TW/">Taiwan</a>
+    (101 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/TJ/"><img class="flag" src="/images/flags/TJ.png" height="12" title="Tajikistan" alt="" /></a> 
+    <a href="/countries/TJ/">Tajikistan</a>
+    (19 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/TH/"><img class="flag" src="/images/flags/TH.png" height="12" title="Thailand" alt="" /></a> 
+    <a href="/countries/TH/">Thailand</a>
+    (117 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/TL/"><img class="flag" src="/images/flags/TL.png" height="12" title="Timor-Leste" alt="" /></a> 
+    <a href="/countries/TL/">Timor-Leste</a>
+    (14 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/TR/"><img class="flag" src="/images/flags/TR.png" height="12" title="Turkey" alt="" /></a> 
+    <a href="/countries/TR/">Turkey</a>
+    (344 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/TM/"><img class="flag" src="/images/flags/TM.png" height="12" title="Turkmenistan" alt="" /></a> 
+    <a href="/countries/TM/">Turkmenistan</a>
+    (51 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/AE/"><img class="flag" src="/images/flags/AE.png" height="12" title="United Arab Emirates" alt="" /></a> 
+    <a href="/countries/AE/">United Arab Emirates</a>
+    (256 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/UZ/"><img class="flag" src="/images/flags/UZ.png" height="12" title="Uzbekistan" alt="" /></a> 
+    <a href="/countries/UZ/">Uzbekistan</a>
+    (180 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/VN/"><img class="flag" src="/images/flags/VN.png" height="12" title="Vietnam" alt="" /></a> 
+    <a href="/countries/VN/">Vietnam</a>
+    (107 airports)
+  </div>
+        <div class="geo listing">
+    <a class="hidden-xs" href="/countries/YE/"><img class="flag" src="/images/flags/YE.png" height="12" title="Yemen" alt="" /></a> 
+    <a href="/countries/YE/">Yemen</a>
+    (43 airports)
+  </div>
+        <div>
+    <h2>Keywords</h2>
+            <p>Asian airports</p>
+                          </div>
+</aside>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/js/lib/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/lib/bootstrap.min.js"></script>
+<script src="/js/general.js" type="text/javascript"></script>
+<script src="/js/lib/leaflet/leaflet.js"></script>
+  </body>
+</html>
