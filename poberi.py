@@ -142,7 +142,7 @@ def pridobi_lete_v_24urah(widget_url_):
         time.sleep(0.2)
     #print(stevilo_letov, mesta, druzbe, povprecna_zamuda(seznam_parov_zamud))
     #print("Konec iskanja letov zadnjih 24 ur.")
-    return {"Število letov": stevilo_letov, "Destinacije": sorted(mesta), 
+    return {"Število prihodov": stevilo_letov, "Destinacije": sorted(mesta), 
             "Letalske družbe": sorted(druzbe), "Povprečna zamuda letov": povprecna_zamuda (seznam_parov_zamud)}
 
 def pridobivanje_podatkov(frontpage_url):
