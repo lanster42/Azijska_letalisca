@@ -2,7 +2,7 @@
 #importing
 from bs4 import BeautifulSoup
 import requests
-import re
+import time
 
 #####################################################################################
 import urllib3
@@ -40,7 +40,8 @@ def je_v_24urah(datum_str, cas_str, primerjalni_datum_str, moznost=""):
     # Preverim, ali je datum1 pred datum2 in ali je razlika manjša od 24 ur
     if moznost == "strogo":
         return razlika >= timedelta(hours=0) and razlika <= timedelta(days=1)
-    else: return razlika <= timedelta(days=1)
+    else:
+        return razlika <= timedelta(days=1)
 
 def zamuda(prvi_cas, drugi_cas): # Za pomoc pri izracunu zamude bom uporabil min cas razliko, ker zamuda ne bo nikoli vec od 12 ur
     # Pretvorim oba časa v datetime objekte (brez datuma)
@@ -77,7 +78,7 @@ def povprecna_zamuda(seznam_tuplov):
     return f"{sestevek // (len(seznam_tuplov) - brezcasni)} minut"
         
 # Primer:
-widget_url_ = "https://www.avionio.com/widget/en/HKG/arrivals"
+#widget_url_ = "https://www.avionio.com/widget/en/USM/arrivals"
 #local_date_time = "2024-10-13 12:49"
 
 def pridobi_lete_v_24urah(widget_url_):
@@ -89,9 +90,11 @@ def pridobi_lete_v_24urah(widget_url_):
     seznam_parov_zamud = []
     
     while True:
+        #print(f"Pošiljam zahtevek za stran: {previous_url}")
         third_doc = parsiraj(previous_url) #Na vsaki "strani" lociramo tabelo
         tabela = third_doc.find("tbody")
         if tabela:
+            #print(f"Obdelujem stran {trenutna_stran} za URL {previous_url}")
             local_date_time = third_doc.find(id="tt-local-time")["data-date"][:16]
             prvi_let_datum = tabela.find_all("tr")[1].find(class_="tt-d").string.strip()
             prvi_let_cas = tabela.find_all("tr")[1].find(class_="tt-t").string.strip()
@@ -114,6 +117,7 @@ def pridobi_lete_v_24urah(widget_url_):
                         letalska_druzba = let.find_all("td")[5].get_text(strip=True)
                     except:
                         letalska_druzba = let.find_all("td")[5].string
+
                     stevilo_letov += 1
                     seznam_parov_zamud.append((cas_leta, pristanek))
                     if zacetno_mesto not in mesta:
@@ -121,6 +125,8 @@ def pridobi_lete_v_24urah(widget_url_):
                     if letalska_druzba not in druzbe:
                         druzbe.append(letalska_druzba)
                     #print(cas_leta, zacetno_mesto, letalska_druzba, pristanek)
+                else:
+                    continue
             # Ali je prvi let manj kot 24 ur stran
             if je_v_24urah(prvi_let_datum, prvi_let_cas, local_date_time):
                 pass
@@ -129,10 +135,15 @@ def pridobi_lete_v_24urah(widget_url_):
 
             trenutna_stran += 1
             previous_url = f"{previous_url[:-len(str(trenutna_stran-1))]}{trenutna_stran}"
+        else:
+            break
+                # Dodaj časovni zamik med zahtevki
+                
+        time.sleep(0.2)
     #print(stevilo_letov, mesta, druzbe, povprecna_zamuda(seznam_parov_zamud))
     #print("Konec iskanja letov zadnjih 24 ur.")
-    return {"Število letov": stevilo_letov, "Destinacije": mesta, 
-            "Letalske družbe": druzbe, "Povprečna zamuda letov": povprecna_zamuda(seznam_parov_zamud)}
+    return {"Število prihodov": stevilo_letov, "Destinacije": sorted(mesta), 
+            "Letalske družbe": sorted(druzbe), "Povprečna zamuda letov": povprecna_zamuda (seznam_parov_zamud)}
 
 def pridobivanje_podatkov(frontpage_url):
     Seznam_slovarjev = []
@@ -143,8 +154,8 @@ def pridobivanje_podatkov(frontpage_url):
 
         # Poišči ime letališča, drzavo, tip letalisca, kodo letalisca in st. prihodov
         Sez_letalisc = []
-        ime_class = doc.find_all(class_="col-lg-6")
-        for letalisce in ime_class:
+        ime_class = doc.find_all(class_="col-lg-6")[:-1]   # Zadnje letališče na n strani je prvo letališče na (n+1) strani
+        for letalisce in ime_class: 
             ime_letalisca = letalisce.find("h3").find("a").string
             drzava = letalisce.find("p").find("b").string.strip()
             tip_letalisca = letalisce.find("img")["title"]
@@ -153,23 +164,33 @@ def pridobivanje_podatkov(frontpage_url):
             poisci_prihode = letalisce.find(title="Arrivals and departures")
             # Preverim, ali link obstaja
             if poisci_prihode:
+                print(f"Nasel sem prihode od {ime_letalisca}.")
                 url_prihodov = f"https://ourairports.com{poisci_prihode.get("href")}"  # Če obstaja, vzamem 'href'
                 sec_doc = parsiraj(url_prihodov)
                 
                 widget_url = sec_doc.find("iframe")["src"] # Kdo mi je zabičou da morm delat z widgeti?! Parsiram widget
-                print(widget_url)
                 # V posebni funkciji sestavim slovar prihodov
-                if widget_url:
+                try:
+                    print(widget_url)
                     prihodi = pridobi_lete_v_24urah(widget_url)
-                else:
-                    prihodi = "Ni podatka"
+                    print("Prihod najden.")
+                    #print(prihodi)
+                except AttributeError:
+                    print("Prihod ni najden.")
+                    prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", 
+            "Letalske družbe": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
+                    continue
             else:
                 print("Element 'Arrivals and departures' ne obstaja")
-                prihodi = "Ni podatka"
+                prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", 
+            "Letalske družbe": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
 
-            Sez_letalisc.append({"ime letališča" : ime_letalisca, "država": drzava, 
-                                 "tip letališča" : tip_letalisca, "prihodi": prihodi})
+            Slovar1 = {"ime letališča" : ime_letalisca, "država": drzava, 
+                                 "tip letališča" : tip_letalisca}
+            Sez_letalisc.append({**Slovar1, **prihodi})
+            print(Sez_letalisc)
         Seznam_slovarjev += (Sez_letalisc)
+        #print(Seznam_slovarjev)
     return Seznam_slovarjev
 
 #TO DO:
