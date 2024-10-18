@@ -137,37 +137,34 @@ def pridobi_lete_v_24urah(widget_url_):
             previous_url = f"{previous_url[:-len(str(trenutna_stran-1))]}{trenutna_stran}"
         else:
             break
-                # Dodaj časovni zamik med zahtevki
-                
+          
         time.sleep(0.2)
-    #print(stevilo_letov, mesta, druzbe, povprecna_zamuda(seznam_parov_zamud))
-    #print("Konec iskanja letov zadnjih 24 ur.")
     return {"Število prihodov": stevilo_letov, "Destinacije": sorted(mesta), 
             "Letalske družbe": sorted(druzbe), "Povprečna zamuda letov": povprecna_zamuda (seznam_parov_zamud)}
 
 def pridobivanje_podatkov(frontpage_url):
-    Seznam_slovarjev = []
+    seznam_slovarjev = []
     for page in range(stevilo_strani(frontpage_url) + 1):
         # Najprej pridobim permition za vsako stran posebaj (po straneh se lahko premikas le po 50 naenkrat)
-        main_urls = f"https://ourairports.com/continents/AS/airports.html?start={page*50}"
+        main_urls = f"{frontpage_url}?start={page*50}"
         doc = parsiraj(main_urls)
 
         # Poišči ime letališča, drzavo, tip letalisca, kodo letalisca in st. prihodov
-        Sez_letalisc = []
+        sez_letalisc = []
         ime_class = doc.find_all(class_="col-lg-6")[:-1]   # Zadnje letališče na n strani je prvo letališče na (n+1) strani
-        for letalisce in ime_class: 
+        for letalisce in ime_class:
             ime_letalisca = letalisce.find("h3").find("a").string
             drzava = letalisce.find("p").find("b").string.strip()
             tip_letalisca = letalisce.find("img")["title"]
-            
+
             # Lotimo se strani z odhodi in prihodi :')
             poisci_prihode = letalisce.find(title="Arrivals and departures")
             # Preverim, ali link obstaja
             if poisci_prihode:
-                print(f"Nasel sem prihode od {ime_letalisca}.")
-                url_prihodov = f"https://ourairports.com{poisci_prihode.get("href")}"  # Če obstaja, vzamem 'href'
+                print(f"Nasel sem stran s prihodi od {ime_letalisca}.")
+                url_prihodov = f"https://ourairports.com{poisci_prihode.get("href")}"  # Če obstaja, vzamem "href"
                 sec_doc = parsiraj(url_prihodov)
-                
+
                 widget_url = sec_doc.find("iframe")["src"] # Kdo mi je zabičou da morm delat z widgeti?! Parsiram widget
                 # V posebni funkciji sestavim slovar prihodov
                 try:
@@ -177,23 +174,20 @@ def pridobivanje_podatkov(frontpage_url):
                     #print(prihodi)
                 except AttributeError:
                     print("Prihod ni najden.")
-                    prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", 
-            "Letalske družbe": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
-                    continue
+                    prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka",
+                               "Letalske družbe": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
             else:
-                print("Element 'Arrivals and departures' ne obstaja")
-                prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", 
+                prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka",
             "Letalske družbe": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
 
-            Slovar1 = {"ime letališča" : ime_letalisca, "država": drzava, 
+            slovar1 = {"ime letališča" : ime_letalisca, "država": drzava,
                                  "tip letališča" : tip_letalisca}
-            Sez_letalisc.append({**Slovar1, **prihodi})
-            print(Sez_letalisc)
-        Seznam_slovarjev += (Sez_letalisc)
+            sez_letalisc.append({**slovar1, **prihodi})
+            print(sez_letalisc)
+        seznam_slovarjev += (sez_letalisc)
         #print(Seznam_slovarjev)
-    return Seznam_slovarjev
+    return seznam_slovarjev
 
 #TO DO:
 
-# Debuggej tazadno funkcijo, zdi se mi, da so ostale okey. 
 # Na koncu: "Slovenjenje"
