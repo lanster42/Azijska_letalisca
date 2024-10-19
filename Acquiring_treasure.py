@@ -139,8 +139,8 @@ def pridobi_lete_v_24urah(widget_url_):
             break
           
         time.sleep(0.2)
-    return {"Število prihodov": stevilo_letov, "Destinacije": sorted(mesta), 
-            "Letalske družbe": sorted(druzbe), "Povprečna zamuda letov": povprecna_zamuda (seznam_parov_zamud)}
+    return {"Število prihodov": stevilo_letov, "Destinacije": sorted(mesta), "Število destinacij": len(mesta),
+            "Letalske družbe": sorted(druzbe), "Število let. družb": len(druzbe), "Povprečna zamuda letov": povprecna_zamuda (seznam_parov_zamud)}
 
 def pridobivanje_podatkov(frontpage_url):
     seznam_slovarjev = []
@@ -174,14 +174,12 @@ def pridobivanje_podatkov(frontpage_url):
                     #print(prihodi)
                 except AttributeError:
                     print("Prihod ni najden.")
-                    prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka",
-                               "Letalske družbe": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
+                    prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", "Število destinacij": "Ni podatka", "Letalske družbe": "Ni podatka", "Število let. družb": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
             else:
-                prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka",
-            "Letalske družbe": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
+                prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", "Število destinacij": "Ni podatka", "Letalske družbe": "Ni podatka", "Število let. družb": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
 
-            slovar1 = {"ime letališča" : ime_letalisca, "država": drzava,
-                                 "tip letališča" : tip_letalisca}
+            slovar1 = {"Ime letališča" : ime_letalisca, "Država": drzava,
+                                 "Tip letališča" : tip_letalisca}
             sez_letalisc.append({**slovar1, **prihodi})
             print(sez_letalisc)
         seznam_slovarjev += (sez_letalisc)
