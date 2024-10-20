@@ -3,8 +3,7 @@ import csv
 import Acquiring_treasure as at
 import Supporting_char as sc
 
-seznam = sc.seznam
-#at.pridobivanje_podatkov(at.frontpage_url)
+seznam = at.pridobivanje_podatkov(at.frontpage_url)
 
 #Zapiši podatke v csv datoteko
 def zapisi_v_csv(seznam):

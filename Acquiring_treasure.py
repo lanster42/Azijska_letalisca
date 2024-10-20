@@ -58,13 +58,14 @@ def zamuda(prvi_cas, drugi_cas): # Za pomoc pri izracunu zamude bom uporabil min
     razlika3 = cas1_naslednji_dan - cas2
     
     razlika = min(abs(razlika1), razlika2, razlika3)
-    minute = razlika.seconds // 60   
+    minute = razlika.seconds // 60
     if razlika == razlika1 and razlika1< timedelta(hours=0) or razlika == razlika3:
         return (- minute)
     else:
         return minute
 
 # Primer:
+#seznam_tuplov = []
 #seznam_tuplov = [("22:00", "22:10"), ("00:10", "23:50"), ("23:40", "00:10")]
     
 def povprecna_zamuda(seznam_tuplov):
@@ -75,10 +76,12 @@ def povprecna_zamuda(seznam_tuplov):
             sestevek += zamuda(dvojica[0], dvojica[-1])
         except:
             brezcasni += 1
+    if (len(seznam_tuplov) - brezcasni) == 0:
+        return "Ni podatka"
     return f"{sestevek // (len(seznam_tuplov) - brezcasni)} minut"
         
 # Primer:
-#widget_url_ = "https://www.avionio.com/widget/en/USM/arrivals"
+#widget_url_ = "https://www.avionio.com/widget/en/SKT/arrivals"
 #local_date_time = "2024-10-13 12:49"
 
 def pridobi_lete_v_24urah(widget_url_):
@@ -88,13 +91,13 @@ def pridobi_lete_v_24urah(widget_url_):
     mesta = []
     druzbe = []
     seznam_parov_zamud = []
-    
+
     while True:
-        #print(f"Pošiljam zahtevek za stran: {previous_url}")
+        print(f"Pošiljam zahtevek za stran: {previous_url}")
         third_doc = parsiraj(previous_url) #Na vsaki "strani" lociramo tabelo
         tabela = third_doc.find("tbody")
         if tabela:
-            #print(f"Obdelujem stran {trenutna_stran} za URL {previous_url}")
+            print(f"Obdelujem stran {trenutna_stran} za URL {previous_url}")
             local_date_time = third_doc.find(id="tt-local-time")["data-date"][:16]
             prvi_let_datum = tabela.find_all("tr")[1].find(class_="tt-d").string.strip()
             prvi_let_cas = tabela.find_all("tr")[1].find(class_="tt-t").string.strip()
@@ -137,8 +140,8 @@ def pridobi_lete_v_24urah(widget_url_):
             previous_url = f"{previous_url[:-len(str(trenutna_stran-1))]}{trenutna_stran}"
         else:
             break
-          
-        time.sleep(0.2)
+
+        time.sleep(0.3)
     return {"Število prihodov": stevilo_letov, "Destinacije": sorted(mesta), "Število destinacij": len(mesta),
             "Letalske družbe": sorted(druzbe), "Število let. družb": len(druzbe), "Povprečna zamuda letov": povprecna_zamuda (seznam_parov_zamud)}
 
@@ -174,9 +177,9 @@ def pridobivanje_podatkov(frontpage_url):
                     #print(prihodi)
                 except AttributeError:
                     print("Prihod ni najden.")
-                    prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", "Število destinacij": "Ni podatka", "Letalske družbe": "Ni podatka", "Število let. družb": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
+                    prihodi = {"Število prihodov": "Ni podatka", "Destinacije": "Ni podatka", "Število destinacij": "Ni podatka", "Letalske družbe": "Ni podatka", "Število let. družb": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
             else:
-                prihodi = {"Število letov": "Ni podatka", "Destinacije": "Ni podatka", "Število destinacij": "Ni podatka", "Letalske družbe": "Ni podatka", "Število let. družb": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
+                prihodi = {"Število prihodov": "Ni podatka", "Destinacije": "Ni podatka", "Število destinacij": "Ni podatka", "Letalske družbe": "Ni podatka", "Število let. družb": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
 
             slovar1 = {"Ime letališča" : ime_letalisca, "Država": drzava,
                                  "Tip letališča" : tip_letalisca}
