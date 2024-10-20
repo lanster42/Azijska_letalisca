@@ -1,7 +1,6 @@
 import os
 import csv
 import Acquiring_treasure as at
-import Supporting_char as sc
 
 seznam = at.pridobivanje_podatkov(at.frontpage_url)
 

@@ -3,10 +3,10 @@
 from bs4 import BeautifulSoup
 import requests
 import time
-
-#####################################################################################
 import urllib3
 from datetime import datetime, timedelta
+
+#####################################################################################
 
 urllib3.disable_warnings()  # Stran je bila varna v prvih 2 tednih dela z njo, a ji je nato potekel certifikat o varnosti
 
@@ -64,10 +64,7 @@ def zamuda(prvi_cas, drugi_cas): # Za pomoc pri izracunu zamude bom uporabil min
     else:
         return minute
 
-# Primer:
-#seznam_tuplov = []
-#seznam_tuplov = [("22:00", "22:10"), ("00:10", "23:50"), ("23:40", "00:10")]
-    
+# Izracun povprecne zamude letov v zadnjih 24 urah
 def povprecna_zamuda(seznam_tuplov):
     sestevek = 0
     brezcasni = 0
@@ -82,7 +79,6 @@ def povprecna_zamuda(seznam_tuplov):
         
 # Primer:
 #widget_url_ = "https://www.avionio.com/widget/en/SKT/arrivals"
-#local_date_time = "2024-10-13 12:49"
 
 def pridobi_lete_v_24urah(widget_url_):
     previous_url = f"{widget_url_}?page=-0"  # Zacetek, da potem lahko page num spreminjam
@@ -93,11 +89,9 @@ def pridobi_lete_v_24urah(widget_url_):
     seznam_parov_zamud = []
 
     while True:
-        print(f"Pošiljam zahtevek za stran: {previous_url}")
         third_doc = parsiraj(previous_url) #Na vsaki "strani" lociramo tabelo
         tabela = third_doc.find("tbody")
         if tabela:
-            print(f"Obdelujem stran {trenutna_stran} za URL {previous_url}")
             local_date_time = third_doc.find(id="tt-local-time")["data-date"][:16]
             prvi_let_datum = tabela.find_all("tr")[1].find(class_="tt-d").string.strip()
             prvi_let_cas = tabela.find_all("tr")[1].find(class_="tt-t").string.strip()
@@ -145,6 +139,7 @@ def pridobi_lete_v_24urah(widget_url_):
     return {"Število prihodov": stevilo_letov, "Destinacije": sorted(mesta), "Število destinacij": len(mesta),
             "Letalske družbe": sorted(druzbe), "Število let. družb": len(druzbe), "Povprečna zamuda letov": povprecna_zamuda (seznam_parov_zamud)}
 
+# Main funkcija za pridobivanje vseh podatkov
 def pridobivanje_podatkov(frontpage_url):
     seznam_slovarjev = []
     for page in range(stevilo_strani(frontpage_url) + 1):
@@ -171,12 +166,11 @@ def pridobivanje_podatkov(frontpage_url):
                 widget_url = sec_doc.find("iframe")["src"] # Kdo mi je zabičou da morm delat z widgeti?! Parsiram widget
                 # V posebni funkciji sestavim slovar prihodov
                 try:
-                    print(widget_url)
+                    #print(widget_url)
                     prihodi = pridobi_lete_v_24urah(widget_url)
-                    print("Prihod najden.")
-                    #print(prihodi)
+                    #print("Prihod najden.")
                 except AttributeError:
-                    print("Prihod ni najden.")
+                    #print("Prihod ni najden.")
                     prihodi = {"Število prihodov": "Ni podatka", "Destinacije": "Ni podatka", "Število destinacij": "Ni podatka", "Letalske družbe": "Ni podatka", "Število let. družb": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
             else:
                 prihodi = {"Število prihodov": "Ni podatka", "Destinacije": "Ni podatka", "Število destinacij": "Ni podatka", "Letalske družbe": "Ni podatka", "Število let. družb": "Ni podatka", "Povprečna zamuda letov": "Ni podatka"}
@@ -184,9 +178,8 @@ def pridobivanje_podatkov(frontpage_url):
             slovar1 = {"Ime letališča" : ime_letalisca, "Država": drzava,
                                  "Tip letališča" : tip_letalisca}
             sez_letalisc.append({**slovar1, **prihodi})
-            print(sez_letalisc)
+            #print(sez_letalisc)
         seznam_slovarjev += (sez_letalisc)
-        #print(Seznam_slovarjev)
     return seznam_slovarjev
 
 #TO DO:
