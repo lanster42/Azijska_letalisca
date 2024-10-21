@@ -4,23 +4,32 @@ import Acquiring_treasure as at
 
 seznam = at.pridobivanje_podatkov(at.frontpage_url)
 
+# S to funkcijo bom sestavil nov seznam s podatki, ki ga bom nato napisal v csv
+# Sproti sem dodajal funkcije po potrebi (cisto na koncu sem dodal za zaprta letalisca), zato ni lepa funkcija
 def st_letalisc_v_drzavi(seznam):
     nov_slovar = {}
     for slovar in seznam:
         drzava = slovar['Država']
         if drzava not in nov_slovar:
             if slovar["Število prihodov"] == "Ni podatka":
-                nov_slovar[drzava] = {"Število letališč": 1, "Število prihodov": 0}
+                if slovar["Tip letališča"] == "Closed airport":
+                    nov_slovar[drzava] = {"Število letališč": 1, "Št zaprtih": 1, "Število prihodov": 0}
+                else:
+                    nov_slovar[drzava] = {"Število letališč": 1, "Št zaprtih": 0, "Število prihodov": 0}
             else:
-                nov_slovar[drzava] = {"Število letališč": 1, "Število prihodov": slovar['Število prihodov']}
+                if slovar["Tip letališča"] == "Closed airport":
+                    nov_slovar[drzava] = {"Število letališč": 1, "Št zaprtih": 1, "Število prihodov": int(slovar['Število prihodov'])}  # Pretvori v int
+                else:
+                    nov_slovar[drzava] = {"Število letališč": 1, "Št zaprtih": 0, "Število prihodov": int(slovar['Število prihodov'])}  # Pretvori v int
         else:
             nov_slovar[drzava]["Število letališč"] += 1
-            if not slovar["Število prihodov"] == "Ni podatka":
-                nov_slovar[drzava]["Število prihodov"] += slovar['Število prihodov']
-    # Pretvori slovar nazaj v seznam slovarjev
-    nov_seznam = [{"Država": drzava, "Tip letališča": slovar["Tip letališča"], **podatki} for drzava, podatki in nov_slovar.items()]
-    return nov_seznam
+            if slovar["Tip letališča"] == "Closed airport":
+                nov_slovar[drzava]["Št zaprtih"] += 1
+            if slovar["Število prihodov"] != "Ni podatka":
+                nov_slovar[drzava]["Število prihodov"] += int(slovar['Število prihodov'])
 
+    nov_seznam = [{"Država": drzava, **podatki} for drzava, podatki in nov_slovar.items()]
+    return nov_seznam
 
 whatever = st_letalisc_v_drzavi(seznam)
 

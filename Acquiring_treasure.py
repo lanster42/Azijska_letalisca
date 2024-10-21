@@ -15,7 +15,7 @@ frontpage_url = "https://ourairports.com/continents/AS/airports.html"
 #####################################################################################
 
 def parsiraj(zeljen_url):
-    potrdilo = requests.get(zeljen_url, verify=False) # Verify sem dodal, saj je strani med pisanjem kode potekel certifikat o varnosti :)
+    potrdilo = requests.get(zeljen_url, verify=False, timeout=5) # Verify sem dodal, saj je strani med pisanjem kode potekel certifikat o varnosti :)
     if potrdilo.status_code == 200:
     # Parsiram HTML vsebino vmesne strani
         return BeautifulSoup(potrdilo.content, "html.parser")
@@ -135,7 +135,7 @@ def pridobi_lete_v_24urah(widget_url_):
         else:
             break
 
-        time.sleep(0.3)
+        time.sleep(0.5)
     return {"Število prihodov": stevilo_letov, "Destinacije": sorted(mesta), "Število destinacij": len(mesta),
             "Letalske družbe": sorted(druzbe), "Število let. družb": len(druzbe), "Povprečna zamuda letov": povprecna_zamuda (seznam_parov_zamud)}
 
@@ -178,7 +178,7 @@ def pridobivanje_podatkov(frontpage_url):
             slovar1 = {"Ime letališča" : ime_letalisca, "Država": drzava,
                                  "Tip letališča" : tip_letalisca}
             sez_letalisc.append({**slovar1, **prihodi})
-            #print(sez_letalisc)
+            print(sez_letalisc)
         seznam_slovarjev += (sez_letalisc)
     return seznam_slovarjev
 
