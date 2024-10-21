@@ -6,15 +6,15 @@ Za vsako Letališče bom zajel naslednje podatke:
 * ime letališča in državo, kateri letališče pripada
 * tip letališča (major/glavno, regional/regionalno, small/majhno, closed/zaprto ali pa helipad/heliport)
 * koliko prihodov (*Arrivals*) je bilo v zadnjih 24 urah, če je ta podatek na strani podan
-* iz koliko destinacij obstajajo direktni leti na letališče in koliko letalskih družb deluje na letališču
+* iz koliko destinacij obstajajo direktni leti na letališče in koliko letalskih družb na letališču deluje
 
 ## Hipopteze in vprašanja
 * katere države imajo največ letališč
-* katere države imajo največ zaprtih letališč
 * katere države imajo največ prihodov skupaj
-* glavna (Major) letališča bodo imela največ prihodov v primerjavi z drugimi
-* letališča z največ prihodi bodo uporabljala tudi največ letalskih družb
-* katera letališča bodo imela največjo in najmanjšo zamudo? Hipoteza: letališča z največ prihodi bodo gradila *sredino* med povprečno zamudo.
+* katere države imajo največ zaprtih letališč
+* hipoteza: letališča z največ prihodi bodo uporabljala tudi največ letalskih družb
+* katera letališča bodo imela največjo in najmanjšo zamudo?
+  * hipoteza: letališča z največ prihodi bodo gradila *sredino* med povprečno zamudo.
 
 
 ## Potek dela
