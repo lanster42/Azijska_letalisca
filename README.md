@@ -14,7 +14,7 @@ Za vsako Letališče bom zajel naslednje podatke:
 * katere države imajo največ zaprtih letališč
 * hipoteza: letališča z največ prihodi bodo uporabljala tudi največ letalskih družb
 * katera letališča bodo imela največjo in najmanjšo zamudo?
- * hipoteza: letališča z najmanj prihodi bodo imela največjo in najmanjšo povprečno zamudo.
+ ** hipoteza: letališča z najmanj prihodi bodo imela največjo in najmanjšo povprečno zamudo.
 
 
 ## Potek dela
