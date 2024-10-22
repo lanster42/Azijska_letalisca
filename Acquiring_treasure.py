@@ -15,7 +15,7 @@ frontpage_url = "https://ourairports.com/continents/AS/airports.html"
 #####################################################################################
 
 def parsiraj(zeljen_url):
-    potrdilo = requests.get(zeljen_url, verify=False, timeout=5) # Verify sem dodal, saj je strani med pisanjem kode potekel certifikat o varnosti :)
+    potrdilo = requests.get(zeljen_url, verify=False) # Verify sem dodal, saj je strani med pisanjem kode potekel certifikat o varnosti :)
     if potrdilo.status_code == 200:
     # Parsiram HTML vsebino vmesne strani
         return BeautifulSoup(potrdilo.content, "html.parser")

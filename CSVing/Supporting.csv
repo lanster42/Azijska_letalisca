@@ -1,58 +1,58 @@
-Država,Število letališč,Število prihodov
-United Arab Emirates,256,1095
-Singapore,11,563
-Japan,3565,3465
-Hong Kong,103,532
-Thailand,117,1325
-China,717,15406
-Malaysia,136,1159
-South Korea,1403,1329
-India,626,3634
-Israel,57,164
-Taiwan,101,695
-Indonesia,618,2174
-Qatar,21,377
-Philippines,728,982
-Vietnam,108,884
-Turkey,344,1386
-Cyprus,91,241
-Jordan,24,110
-Sri Lanka,38,81
-Oman,60,145
-Bahrain,12,116
-Greece,5,148
-Maldives,30,122
-Cambodia,18,64
-Kuwait,26,161
-Nepal,65,319
-Saudi Arabia,164,1151
-Egypt,25,92
-Lebanon,38,41
-Georgia,34,104
-Azerbaijan,41,139
-Bangladesh,58,199
-Kazakhstan,181,311
-Myanmar,82,89
-Macau,5,81
-Pakistan,189,188
-Uzbekistan,180,144
-Brunei,16,22
-Iran,288,538
-Kyrgyzstan,56,82
-Laos,25,45
-Afghanistan,82,17
-Armenia,16,78
-Syria,55,11
-Mongolia,40,20
-Bhutan,12,12
-Russia,486,340
-Iraq,89,127
-Timor-Leste,14,6
-North Korea,94,0
-Yemen,43,9
-Turkmenistan,51,34
-Tajikistan,19,40
-British Indian Ocean Territory,1,0
-Christmas Island,1,0
-Cocos (Keeling) Islands,1,0
-Palestinian Territory,7,0
+Država,Število letališč,Št zaprtih,Število prihodov
+United Arab Emirates,256,4,1050
+Singapore,11,1,531
+Japan,3565,416,3456
+Hong Kong,103,7,544
+Thailand,117,5,1378
+China,718,55,15289
+Malaysia,136,10,1093
+South Korea,1403,36,1300
+India,626,32,3781
+Israel,57,5,215
+Taiwan,102,8,671
+Indonesia,618,43,2097
+Qatar,21,1,357
+Philippines,730,130,961
+Vietnam,108,29,853
+Turkey,344,20,1230
+Cyprus,91,8,194
+Jordan,24,0,92
+Oman,60,3,120
+Sri Lanka,38,0,82
+Bahrain,12,0,112
+Greece,5,1,120
+Maldives,30,0,111
+Cambodia,18,5,61
+Kuwait,26,0,154
+Nepal,65,0,355
+Saudi Arabia,164,8,1111
+Egypt,25,1,67
+Lebanon,38,2,42
+Georgia,34,10,96
+Azerbaijan,41,4,115
+Bangladesh,58,5,246
+Kazakhstan,181,19,316
+Myanmar,82,2,115
+Macau,5,0,71
+Pakistan,189,25,190
+Uzbekistan,180,103,136
+Brunei,16,0,17
+Iran,288,22,534
+Kyrgyzstan,56,27,79
+Laos,25,4,61
+Afghanistan,82,3,25
+Armenia,16,4,60
+Syria,55,2,19
+Mongolia,40,3,21
+Bhutan,12,0,7
+Russia,486,75,368
+Iraq,89,7,132
+Timor-Leste,14,1,5
+North Korea,94,4,0
+Yemen,43,1,9
+Turkmenistan,51,3,46
+Tajikistan,19,0,36
+British Indian Ocean Territory,1,0,0
+Christmas Island,1,0,1
+Cocos (Keeling) Islands,1,0,0
+Palestinian Territory,7,4,0
