@@ -121,7 +121,7 @@ def pridobi_lete_v_24urah(widget_url_):
                         mesta.append(zacetno_mesto)
                     if letalska_druzba not in druzbe:
                         druzbe.append(letalska_druzba)
-                    #print(cas_leta, zacetno_mesto, letalska_druzba, pristanek)
+
                 else:
                     continue
             # Ali je prvi let manj kot 24 ur stran
@@ -159,7 +159,7 @@ def pridobivanje_podatkov(frontpage_url):
             poisci_prihode = letalisce.find(title="Arrivals and departures")
             # Preverim, ali link obstaja
             if poisci_prihode:
-                print(f"Nasel sem stran s prihodi od {ime_letalisca}.")
+                # print(f"Nasel sem stran s prihodi od {ime_letalisca}.")
                 url_prihodov = f"https://ourairports.com{poisci_prihode.get("href")}"  # Če obstaja, vzamem "href"
                 sec_doc = parsiraj(url_prihodov)
 
@@ -178,10 +178,6 @@ def pridobivanje_podatkov(frontpage_url):
             slovar1 = {"Ime letališča" : ime_letalisca, "Država": drzava,
                                  "Tip letališča" : tip_letalisca}
             sez_letalisc.append({**slovar1, **prihodi})
-            print(sez_letalisc)
+            #print(sez_letalisc)
         seznam_slovarjev += (sez_letalisc)
     return seznam_slovarjev
-
-#TO DO:
-
-# Na koncu: "Slovenjenje"
